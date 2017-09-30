@@ -1,0 +1,35 @@
+{
+  "name": "developers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tarmadillo/developers-lite.git"
+  },
+  "author": "Tony Armadillo",
+  "license": "GPL",
+  "bugs": {
+    "url": "https://github.com/tarmadillo/developers-lite/issues"
+  },
+  "homepage": "https://github.com/tarmadillo/developers-lite#readme",
+  "devDependencies": {
+    "bourbon": "^4.2.6",
+    "bourbon-neat": "^1.7.2",
+    "css-mqpacker": "^5.0.1",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-notify": "^3.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^6.4.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sass-lint": "^1.3.2",
+    "gulp-sourcemaps": "^2.5.0",
+    "sass-rem": "^1.2.3"
+  }
+}

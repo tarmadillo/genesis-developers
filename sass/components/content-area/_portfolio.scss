@@ -1,0 +1,56 @@
+/* ## Portfolio
+--------------------------------------------- */
+
+.portfolio {
+    .portfolio-item {
+        position: relative;
+        margin-bottom: -1px;
+        width: 31.33333333333333333333%;
+        
+        &:before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #2A2B33;
+            opacity: 0;
+            pointer-events: none;
+            @include transition;
+        }
+        &:hover {
+            &:before {
+                opacity: .9;
+            }
+            .entry-title {
+                opacity: 1;
+                top: 0;
+            }
+        }
+        a,
+        img {
+            margin: 0;
+            border-radius: 0;
+            display: block;
+            min-width: 100%;
+        }
+    }
+    
+    .entry-title {
+        position: absolute;
+        top: 75%;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: 0;
+        opacity: 0;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        @include transition;
+    }
+}

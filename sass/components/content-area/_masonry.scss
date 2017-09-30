@@ -1,0 +1,55 @@
+/* ## Masonry
+--------------------------------------------- */
+
+.masonry {
+    .site-inner {
+        background-color: #eee;
+    }
+    .content {
+        margin-bottom: 100px;
+        .archive-pagination {
+            position: absolute;
+            bottom: -100px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            text-align: center;
+        }
+        .entry {
+            display: inline-block;
+            margin-bottom: 3rem;
+            padding: 0;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 5px;
+            width: calc(33% - 23px);
+
+            &:hover {
+                box-shadow: 0 5px 40px rgba(0, 10, 20, 0.0618);
+            }
+            .entry-image-link {
+                display: block;
+                margin-bottom: 0;
+                img {
+                    display: block;
+                    border-radius: 5px 5px 0 0;
+                }
+            }
+            >.entry-meta,
+            .entry-content {
+                padding: 0 20px;
+            }
+            .entry-title {
+                font-size: 20px;
+                margin: 10px 20px 20px;
+            }
+            >.entry-meta {
+                padding-top: 20px;
+            }
+            .entry-footer {
+                margin: 20px 20px;
+                border-top: 1px solid #1d1d1d;
+            }
+        }
+    }
+}
