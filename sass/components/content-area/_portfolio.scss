@@ -1,5 +1,13 @@
 /* ## Portfolio
 --------------------------------------------- */
+.single-portfolio {
+    .hero-section {
+        padding: 20% 0 18% 0;
+    }
+}
+.post-type-archive-portfolio{
+    line-height: 0;
+}
 .portfolio {
     .site-inner {
         background-color: #eee;
@@ -16,11 +24,13 @@
         }
         .entry {
             display: inline-block;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
             margin-bottom: 3rem;
             padding: 0;
             width: 100%;
             background-color: #fff;
-            width: 50%;
+            width: calc(33.333333333333333% - 30px);
             
             &:before {
                 content: " ";
@@ -44,6 +54,9 @@
                 }
             }
             
+            img {
+                border-radius: 5px 5px 0 0;
+            }
             .entry-title {
                 position: absolute;
                 top: 75%;
