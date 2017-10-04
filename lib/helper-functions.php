@@ -125,3 +125,57 @@ function remove_templates( $page_templates ) {
 function remove_metaboxes( $hook ) {
 	remove_meta_box( 'genesis-theme-settings-blogpage', $hook, 'main' );
 }
+
+/**
+ * Custom header image callback.
+ *
+ * Loads image or video depending on what is set.
+ * If a featured image is set it will override the
+ * header image. If a video is set it will be used
+ * on the home page only.
+ *
+ * @since 1.0.0
+ */
+function custom_header() {
+
+	// Get the featured image if one is set.
+	if ( get_the_post_thumbnail_url() ) {
+
+		$image = '';
+
+		if ( class_exists( 'WooCommerce' ) && is_shop() ) {
+
+			$image = get_the_post_thumbnail_url( get_option( 'woocommerce_shop_page_id' ) );
+
+			if ( ! $image ) {
+				$image = get_header_image();
+			}
+		} elseif ( is_home() ) {
+
+			$image = get_the_post_thumbnail_url( get_option( 'page_for_posts' ) );
+
+			if ( ! $image ) {
+				$image = get_header_image();
+			}
+		} elseif ( is_archive() || is_category() || is_tag() || is_tax() || is_home() ) {
+			$image = get_header_image();
+            
+		} elseif ( 'portfolio' == get_post_type( get_the_ID() ) ) {
+            $image = get_the_post_thumbnail_url();
+        
+        } elseif ( is_single() ) {
+            $image = get_header_image();
+            
+        } else {
+			$image = get_the_post_thumbnail_url();
+
+		}
+	} elseif ( has_header_image() ) {
+		$image = get_header_image();
+
+	}
+
+	if ( ! empty( $image ) ) {
+		printf( '<style>.hero-section,.before-footer{ background-image:url(%s);}</style>', esc_url( $image ) );
+	}
+}

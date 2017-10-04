@@ -50,6 +50,8 @@ function localization_setup(){
 
 // Includes
 include_once( CHILD_THEME_DIR . '/lib/helper-functions.php' );
+include_once( CHILD_THEME_DIR . '/lib/masonry.php' );
+include_once( CHILD_THEME_DIR . '/lib/hero.php' );
 require_once( CHILD_THEME_DIR . '/lib/customize.php' );
 include_once( CHILD_THEME_DIR . '/lib/output.php' );
 include_once( CHILD_THEME_DIR . '/lib/woocommerce/woocommerce-setup.php' );
@@ -116,13 +118,38 @@ add_theme_support( 'genesis-accessibility', array( '404-page', 'drop-down-menu',
 // Add viewport meta tag for mobile browsers.
 add_theme_support( 'genesis-responsive-viewport' );
 
+// Enable Logo option in Customizer > Site Identity.
+add_theme_support( 'custom-logo', array(
+	'height'      => 60,
+	'width'       => 200,
+	'flex-height' => true,
+	'flex-width'  => true,
+	'header-text' => array( '.site-title', '.site-description' ),
+) );
+
+// Display custom logo.
+add_action( 'genesis_site_title', 'the_custom_logo', 0 );
+
 // Add support for custom header.
 add_theme_support( 'custom-header', array(
-	'width'           => 600,
-	'height'          => 160,
-	'header-selector' => '.site-title a',
-	'header-text'     => false,
-	'flex-height'     => true,
+	'header-selector'  => '.hero',
+	'header_image'     => get_stylesheet_directory_uri() . '/images/hero.jpg',
+	'header-text'      => false,
+	'width'            => 1920,
+	'height'           => 1080,
+	'flex-height'      => true,
+	'flex-width'       => true,
+	'video'            => true,
+	'wp-head-callback' => __NAMESPACE__ . '\custom_header',
+) );
+
+// Register default custom header image.
+register_default_headers( array(
+	'child' => array(
+		'url'           => '%2$s/images/hero.jpg',
+		'thumbnail_url' => '%2$s/images/hero.jpg',
+		'description'   => __( 'Hero Image', CHILD_TEXT_DOMAIN ),
+	),
 ) );
 
 // Add support for custom background.
@@ -135,10 +162,12 @@ add_theme_support( 'genesis-after-entry-widget-area' );
 add_theme_support( 'genesis-footer-widgets', 3 );
 
 // Rename primary and secondary navigation menus.
-add_theme_support( 'genesis-menus', array( 'primary' => __( 'After Header Menu', CHILD_TEXT_DOMAIN ), 'secondary' => __( 'Footer Menu', CHILD_TEXT_DOMAIN ) ) );
+add_theme_support( 'genesis-menus', array( 
+    'primary'   => __( 'After Header Menu', CHILD_TEXT_DOMAIN ), 
+    'secondary' => __( 'Footer Menu', CHILD_TEXT_DOMAIN ) ) );
 
 // Add Image Sizes.
-add_image_size( 'featured-image', 720, 400, FALSE );
+add_image_size( 'featured-image', 720, 400, true );
 
 // Reposition the secondary navigation menu.
 remove_action( 'genesis_after_header', 'genesis_do_subnav' );
@@ -190,6 +219,18 @@ function comments_gravatar( $args ) {
 
 	return $args;
 
+}
+
+add_action( 'genesis_before_entry', __NAMESPACE__ . '\featured_post_image', 8 );
+/**
+ * Code to Display Featured Image on top of the post
+ *
+ * @author Tony Armadillo
+ *    
+ */
+function featured_post_image() {
+  if ( ! is_singular( 'post' ) )  return;
+	the_post_thumbnail('featured-image');
 }
 
 // Remove unused templates and metaboxes.
