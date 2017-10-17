@@ -24,7 +24,7 @@ function remove_woocommerce_notice() {
 		return;
 	}
 
-	WC_Admin_Notices::remove_notice( 'theme_support' );
+	\WC_Admin_Notices::remove_notice( 'theme_support' );
 
 }
 
