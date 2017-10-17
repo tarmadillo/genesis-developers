@@ -9,8 +9,9 @@
  * @license GPL-2.0+
  * @link    http://www.studiopress.com/
  */
+namespace TonyArmadillo\Developers;
 
-add_filter( 'woocommerce_enqueue_styles', 'genesis_sample_woocommerce_styles' );
+add_filter( 'woocommerce_enqueue_styles', __NAMESPACE__ . '\woocommerce_styles' );
 /**
  * Enqueue the theme's custom WooCommerce styles to the WooCommerce plugin.
  *
@@ -18,7 +19,7 @@ add_filter( 'woocommerce_enqueue_styles', 'genesis_sample_woocommerce_styles' );
  *
  * @return array Required values for the Genesis Sample Theme's WooCommerce stylesheet.
  */
-function genesis_sample_woocommerce_styles( $enqueue_styles ) {
+function woocommerce_styles( $enqueue_styles ) {
 
 	$enqueue_styles['genesis-sample-woocommerce-styles'] = array(
 		'src'     => get_stylesheet_directory_uri() . '/lib/woocommerce/genesis-sample-woocommerce.css',
@@ -31,7 +32,7 @@ function genesis_sample_woocommerce_styles( $enqueue_styles ) {
 
 }
 
-add_action( 'wp_enqueue_scripts', 'genesis_sample_woocommerce_css' );
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\woocommerce_css' );
 /**
  * Add the themes's custom CSS to the WooCommerce stylesheet.
  *
@@ -39,19 +40,19 @@ add_action( 'wp_enqueue_scripts', 'genesis_sample_woocommerce_css' );
  *
  * @return string CSS to be outputted after the theme's custom WooCommerce stylesheet.
  */
-function genesis_sample_woocommerce_css() {
+function woocommerce_css() {
 
 	// If WooCommerce isn't active, exit early.
 	if ( ! class_exists( 'WooCommerce' ) ) {
 		return;
 	}
 
-	$color_link = get_theme_mod( 'genesis_sample_link_color', genesis_sample_customizer_get_default_link_color() );
-	$color_accent = get_theme_mod( 'genesis_sample_accent_color', genesis_sample_customizer_get_default_accent_color() );
+	$color_link = get_theme_mod( __NAMESPACE__ . '\link_color', customizer_get_default_link_color() );
+	$color_accent = get_theme_mod( __NAMESPACE__ . '\accent_color', customizer_get_default_accent_color() );
 
 	$woo_css = '';
 
-	$woo_css .= ( genesis_sample_customizer_get_default_link_color() !== $color_link ) ? sprintf( '
+	$woo_css .= ( customizer_get_default_link_color() !== $color_link ) ? sprintf( '
 
 		.woocommerce div.product p.price,
 		.woocommerce div.product span.price,
@@ -69,7 +70,7 @@ function genesis_sample_woocommerce_css() {
 
 	', $color_link ) : '';
 
-	$woo_css .= ( genesis_sample_customizer_get_default_accent_color() !== $color_accent ) ? sprintf( '
+	$woo_css .= ( customizer_get_default_accent_color() !== $color_accent ) ? sprintf( '
 		.woocommerce a.button:hover,
 		.woocommerce a.button:focus,
 		.woocommerce a.button.alt:hover,
@@ -107,10 +108,10 @@ function genesis_sample_woocommerce_css() {
 			color: %1$s;
 		}
 
-	', $color_accent, genesis_sample_color_contrast( $color_accent ) ) : '';
+	', $color_accent, __NAMESPACE__ . \color_contrast( $color_accent ) ) : '';
 
 	if ( $woo_css ) {
-		wp_add_inline_style( 'genesis-sample-woocommerce-styles', $woo_css );
+		wp_add_inline_style( __NAMESPACE__ . '\genesis-sample-woocommerce-styles', $woo_css );
 	}
 
 }
