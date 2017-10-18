@@ -76,10 +76,10 @@
 @import 'neat';
 @import '../node_modules/sass-rem/rem';
 @import 'utilities/index';
-@import 'html5-reset/index';
-@import 'defaults/index';
-@import 'structure-layout/index';
-@import 'common-classes/index';
+@import 'html5-reset';
+@import 'defaults';
+@import 'structure-layout';
+@import 'common-classes';
 @import 'components/index';
 @import 'media-queries/index';
-@import 'print-styles/index';
+@import 'print-styles';
