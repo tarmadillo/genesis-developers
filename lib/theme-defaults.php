@@ -25,7 +25,7 @@ function theme_defaults( $defaults ) {
 	$defaults['content_archive_thumbnail'] = 1;
 	$defaults['posts_nav']                 = 'numeric';
 	$defaults['image_size']                = 'large';
-	$defaults['site_layout']               = 'full-width-content';
+	$defaults['site_layout']               = 'content-sidebar';
 
 	return $defaults;
 
@@ -48,7 +48,7 @@ function theme_setting_defaults() {
             $defaults['content_archive_thumbnail'] = 1,
             $defaults['posts_nav']                 = 'numeric',
             $defaults['image_size']                = 'large',
-            $defaults['site_layout']               = 'full-width-content',
+            $defaults['site_layout']               = 'content-sidebar',
 		) );
 
 	}

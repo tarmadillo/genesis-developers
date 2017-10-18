@@ -1,18 +1,19 @@
 'use strict';
 
 var gulp = require('gulp'),
-    bourbon = require('bourbon').includePaths,
-    neat = require('bourbon-neat').includePaths,
-    sass = require('gulp-sass'),
-    postcss = require('gulp-postcss'),
-    autoprefixer = require('autoprefixer'),
-    sourcemaps = require('gulp-sourcemaps'),
-    cssMinify = require('gulp-cssnano'),
-    sassLint = require('gulp-sass-lint'),
+    bourbon         = require('bourbon').includePaths,
+    neat            = require('bourbon-neat').includePaths,
+    sass            = require('gulp-sass'),
+    postcss         = require('gulp-postcss'),
+    autoprefixer    = require('autoprefixer'),
+    mqpacker        = require('css-mqpacker'),
+    sourcemaps      = require('gulp-sourcemaps'),
+    cssMinify       = require('gulp-cssnano'),
+    sassLint        = require('gulp-sass-lint'),
 
     // Utilities
-    rename = require('gulp-rename'),
-    notify = require('gulp-notify'),
+    rename  = require('gulp-rename'),
+    notify  = require('gulp-notify'),
     plumber = require('gulp-plumber');
 
 /************
@@ -64,13 +65,14 @@ gulp.task('postcss', function(){
         .pipe( postcss([
             autoprefixer({
                 browsers: ['last 2 versions']
-            })        
+            }),
+            mqpacker({
+                sort: true
+            }),
         ]))
         
         .pipe(sourcemaps.write())
-        
-        
-              
+          
         .pipe(gulp.dest('./'))
     
         .pipe(notify({

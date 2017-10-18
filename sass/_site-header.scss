@@ -1,0 +1,132 @@
+/* # Site Header
+---------------------------------------------------------------------------------------------------- */
+.site-header {
+    position: relative;
+    width: 100%;
+    z-index: 100;
+	background-color: $white;
+    
+    & > .wrap {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        @include breakpoint(md) {
+            padding: 0 10vw;
+            flex-wrap: nowrap;
+        }
+    }
+}
+
+/* ## Title Area
+--------------------------------------------- */
+.title-area {
+	margin: 0 auto 0 0;
+    position: relative;
+    height: 100%;
+    display: block;
+    flex: 1;
+}
+
+.site-title {
+	font-size: 30px;
+	font-size: 3rem;
+	font-weight: 700;
+	line-height: 1.2;
+    a,
+    a:focus,
+    a:hover {
+        color: #333;
+        text-decoration: none;
+    }
+}
+
+
+
+.site-description {
+	font-size: 16px;
+	font-size: 1.6rem;
+	font-weight: 400;
+	line-height: 1.5;
+}
+
+.site-description,
+.site-title {
+	margin-bottom: 0;
+}
+
+.wp-custom-logo {
+    .title-area {
+        margin: 0;
+        height: 80px;
+    }
+    .custom-logo-link {
+        display: block;
+        padding: 10px;
+        height: 100%;
+        img {
+            width: auto;
+            height: 100%;
+            margin: 0;
+            vertical-align: middle;
+            display: block;
+        }
+    }
+    .site-description,
+    .site-title {
+        clip: rect(1px,1px,1px,1px);
+        height: 1px;
+        overflow: hidden;
+        position: absolute !important;
+        width: 1px;
+        word-wrap: normal !important;
+    }
+}
+
+/* ## Header Widget Right
+--------------------------------------------- */
+.header-widget-area {
+    flex:1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+/* ## Hero Section
+--------------------------------------------- */
+.hero-section {
+    color: #fff;
+    background-position: center;
+    background-size: cover;
+    transition: all .1s ease;
+    position: relative;
+    text-align: center;
+    background-image: url("assets/images/hero.jpg");
+    height: 30vh;
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+.overlay {
+    position: relative;
+    * {
+        position: relative;
+        z-index: 1;
+    }
+    
+    &:after {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        background-color: #111;
+        opacity: .4;
+    }
+}

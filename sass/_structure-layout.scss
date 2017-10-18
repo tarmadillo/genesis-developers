@@ -3,11 +3,11 @@
 
 /* ## Site Containers
 --------------------------------------------- */
-
-.site-inner,
+.content-sidebar-wrap,
 .wrap {
-	margin: 0 auto;
-	max-width: 1340px;
+    margin: 0 auto;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 .site-inner {
@@ -20,124 +20,116 @@
 	max-width: 800px;
 }
 
+/* ### Wrapping div for.sidebar-primary  
+--------------------------------------------- */
+
+.content-sidebar-wrap {
+    max-width: map-get($breakpoints, xl);
+    padding-top: 5%;
+    padding-bottom: 5%;
+    @include breakpoint(md) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 4rem 10vw;
+        &:before,
+        &:after {
+            display: none; // Flex fix.
+        }
+        .sidebar-content & {
+            flex-direction: row-reverse;
+        }
+        .sidebar-content-sidebar & {
+            width: calc(55% - 4rem);
+            padding: 4rem 0;
+            order: 2
+        }
+    }
+}
+
+@include breakpoint(md) {
+    .content {
+        width: 100%;
+    }
+    .sidebar-primary {
+        width: 25%;
+    }
+    .sidebar-secondary {
+        width: 20%;
+        order: 1;
+        
+    }
+    .sidebar-content,
+    .content-sidebar,
+    .sidebar-content-sidebar {
+        .content {
+            width: calc(75% - 4rem);
+        }
+    }
+    .sidebar-content-sidebar {
+        .site-inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+    }
+}
+
 /* ## Column Widths and Positions
 --------------------------------------------- */
 
-/* ### Wrapping div for .content and .sidebar-primary */
-
-.content-sidebar-sidebar .content-sidebar-wrap,
-.sidebar-content-sidebar .content-sidebar-wrap,
-.sidebar-sidebar-content .content-sidebar-wrap {
-	width: 1060px;
-}
-
-.content-sidebar-sidebar .content-sidebar-wrap {
-	float: left;
-}
-
-.sidebar-content-sidebar .content-sidebar-wrap,
-.sidebar-sidebar-content .content-sidebar-wrap {
-	float: right;
-}
-
-/* ### Content */
-
-.content {
-	float: right;
-	width: 880px;
-}
-
-.content-sidebar .content,
-.content-sidebar-sidebar .content,
-.sidebar-content-sidebar .content {
-	float: left;
-}
-
-.content-sidebar-sidebar .content,
-.sidebar-content-sidebar .content,
-.sidebar-sidebar-content .content {
-	width: 660px;
-}
-
-.full-width-content .content {
-	width: 100%;
-}
-
-/* ### Primary Sidebar */
-
-.sidebar-primary {
-	float: right;
-	width: 360px;
-}
-
-.sidebar-content .sidebar-primary,
-.sidebar-sidebar-content .sidebar-primary {
-	float: left;
-}
-
-/* ### Secondary Sidebar */
-
-.sidebar-secondary {
-	float: left;
-	width: 180px;
-}
-
-.content-sidebar-sidebar .sidebar-secondary {
-	float: right;
-}
-
-/* ## Column Classes
---------------------------------------------- */
 /* Link: http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css */
 
-.five-sixths,
-.four-sixths,
-.one-fourth,
-.one-half,
-.one-sixth,
-.one-third,
-.three-fourths,
-.three-sixths,
-.two-fourths,
-.two-sixths,
-.two-thirds {
-	float: left;
-	margin-left: 2.564102564102564%;
-}
+@include breakpoint(md) {
+    .five-sixths,
+    .four-sixths,
+    .one-fourth,
+    .one-half,
+    .one-sixth,
+    .one-third,
+    .three-fourths,
+    .three-sixths,
+    .two-fourths,
+    .two-sixths,
+    .two-thirds {
+        float: left;
+        margin-left: 2.564102564102564%;
+    }
 
-.one-half,
-.three-sixths,
-.two-fourths {
-	width: 48.717948717948715%;
-}
+    .one-half,
+    .three-sixths,
+    .two-fourths {
+        width: 48.717948717948715%;
+    }
 
-.one-third,
-.two-sixths {
-	width: 31.623931623931625%;
-}
+    .one-third,
+    .two-sixths {
+        width: 31.623931623931625%;
+    }
 
-.four-sixths,
-.two-thirds {
-	width: 65.81196581196582%;
-}
+    .four-sixths,
+    .two-thirds {
+        width: 65.81196581196582%;
+    }
 
-.one-fourth {
-	width: 23.076923076923077%;
-}
+    .one-fourth {
+        width: 23.076923076923077%;
+    }
 
-.three-fourths {
-	width: 74.35897435897436%;
-}
+    .three-fourths {
+        width: 74.35897435897436%;
+    }
 
-.one-sixth {
-	width: 14.52991452991453%;
-}
+    .one-sixth {
+        width: 14.52991452991453%;
+    }
 
-.five-sixths {
-	width: 82.90598290598291%;
-}
+    .five-sixths {
+        width: 82.90598290598291%;
+    }
 
-.first {
-	clear: both;
-	margin-left: 0;
+    .first {
+        clear: both;
+        margin-left: 0;
+    }
 }

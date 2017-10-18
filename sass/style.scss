@@ -65,10 +65,6 @@
 - Footer Widgets
 - Site Footer
 - Media Queries
-	- Max-width: 1340px
-	- Max-width: 1200px
-	- Max-width: 1023px
-	- Max-width: 860px
 - Print Styles
 */
 
@@ -80,6 +76,13 @@
 @import 'defaults';
 @import 'structure-layout';
 @import 'common-classes';
-@import 'components/index';
-@import 'media-queries/index';
+@import 'site-header';
+@import 'site-navigation';
+@import 'content-area/index';
+@import 'site-sidebars';
+@import 'site-footer';
+@import 'widgets';
+@import 'plugins';
+@import 'skip-links';
+//@import 'media-queries/index';
 @import 'print-styles';

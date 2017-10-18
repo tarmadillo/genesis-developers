@@ -6,7 +6,7 @@
 	font-size: 16px;
 	font-size: 1.6rem;
 	line-height: 1;
-	padding: 60px 0;
+	padding: 20px 0;
 	text-align: center;
 }
 
@@ -23,23 +23,29 @@
 	font-size: 18px;
 	font-size: 1.8rem;
 	padding: 60px 0;
+    .wrap {
+        @include breakpoint(sm) {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+    }
+    .widget-area {
+        margin: 0 auto 4rem;
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+        @include breakpoint(sm) {
+            flex: 1;
+            margin-left: 2.564102564102564%;
+			&:first-of-type {
+				margin-left: 0;
+			}
+        }
+        
+    }
+    
+    
 }
 
-.footer-widgets-1,
-.footer-widgets-2,
-.footer-widgets-3 {
-	width: 380px;
-}
 
-.footer-widgets-1 {
-	margin-right: 70px;
-}
-
-.footer-widgets-1,
-.footer-widgets-2 {
-	float: left;
-}
-
-.footer-widgets-3 {
-	float: right;
-}

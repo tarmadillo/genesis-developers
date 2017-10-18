@@ -1,0 +1,71 @@
+/* ## Entries
+--------------------------------------------- */
+
+.entry {
+	background-color: #fff;
+    margin-bottom: 40px;
+    padding: 30px;
+    @include breakpoint(md) {
+	   padding: 70px 80px;
+    }
+}
+
+.entry-content {
+    ol,
+    ul {
+       margin-bottom: 28px;
+	   margin-left: 40px; 
+    }
+    ol {
+        ol {
+            margin-bottom: 0;
+        }
+        & > li {
+           list-style-type: decimal; 
+        }
+    }
+    ul {
+        ul {
+            margin-bottom: 0;
+        }
+        & > li {
+            list-style-type: disc;
+        }
+    }
+    code {
+        background-color: #333;
+        color: #eee;
+        display: inline-block;
+        padding: 10px 20px;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+    }
+}
+
+/* ## Entry Meta
+--------------------------------------------- */
+
+p.entry-meta {
+	font-size: 16px;
+	font-size: 1.6rem;
+	margin-bottom: 0;
+}
+
+.entry-header .entry-meta {
+	margin-bottom: 24px;
+}
+
+.entry-footer .entry-meta {
+	border-top: 1px solid #eee;
+	padding-top: 24px;
+}
+
+.entry-categories,
+.entry-tags {
+	display: block;
+}
+
+.entry-comments-link::before {
+	content: "\2014";
+	margin: 0 6px 0 2px;
+}

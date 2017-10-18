@@ -110,7 +110,13 @@ function genesis_sample_responsive_menu_settings() {
 }
 
 // Add HTML5 markup structure.
-add_theme_support( 'html5', array( 'caption', 'comment-form', 'comment-list', 'gallery', 'search-form' ) );
+add_theme_support( 'html5', array( 
+    'caption', 
+    'comment-form', 
+    'comment-list', 
+    'gallery', 
+    'search-form' 
+));
 
 // Add Accessibility support.
 add_theme_support( 'genesis-accessibility', array( '404-page', 'drop-down-menu', 'headings', 'rems', 'search-form', 'skip-links' ) );
@@ -168,6 +174,10 @@ add_theme_support( 'genesis-menus', array(
 
 // Add Image Sizes.
 add_image_size( 'featured-image', 720, 400, true );
+
+// Reposition the primary navigation menu.
+remove_action( 'genesis_after_header', 'genesis_do_nav' );
+add_action( 'genesis_header_right', 'genesis_do_nav' );
 
 // Reposition the secondary navigation menu.
 remove_action( 'genesis_after_header', 'genesis_do_subnav' );
@@ -236,6 +246,11 @@ function featured_post_image() {
 // Remove unused templates and metaboxes.
 add_filter( 'theme_page_templates', __NAMESPACE__ . '\remove_templates' );
 add_action( 'genesis_admin_before_metaboxes', __NAMESPACE__ . '\remove_metaboxes' );
+
+// Remove unused site layouts.
+genesis_unregister_layout( 'content-sidebar-sidebar' );
+genesis_unregister_layout( 'sidebar-content-sidebar' );
+genesis_unregister_layout( 'sidebar-sidebar-content' );
 
 // Register Front Page Widget Areas.
 genesis_register_sidebar( array(
