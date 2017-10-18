@@ -236,3 +236,31 @@ function featured_post_image() {
 // Remove unused templates and metaboxes.
 add_filter( 'theme_page_templates', __NAMESPACE__ . '\remove_templates' );
 add_action( 'genesis_admin_before_metaboxes', __NAMESPACE__ . '\remove_metaboxes' );
+
+// Register Front Page Widget Areas.
+genesis_register_sidebar( array(
+	'id'          => 'front-page-1',
+	'name'        => __( 'Front Page 1', CHILD_TEXT_DOMAIN ),
+	'description' => __( 'This is the front page 1 section.', CHILD_TEXT_DOMAIN ),
+) );
+
+genesis_register_sidebar( array(
+	'id'          => 'front-page-2',
+	'name'        => __( 'Featured Products', CHILD_TEXT_DOMAIN ),
+	'description' => __( 'This is the front page 2 section.', CHILD_TEXT_DOMAIN ),
+) );
+genesis_register_sidebar( array(
+	'id'          => 'front-page-3',
+	'name'        => __( 'Front Page 3', CHILD_TEXT_DOMAIN ),
+	'description' => __( 'This is the front page 3 section.', CHILD_TEXT_DOMAIN ),
+) );
+genesis_register_sidebar( array(
+	'id'          => 'front-page-4',
+	'name'        => __( 'Front Page 4', CHILD_TEXT_DOMAIN ),
+	'description' => __( 'This is the front page 4 section.', CHILD_TEXT_DOMAIN ),
+) );
+genesis_register_sidebar( array(
+	'id'          => 'front-page-5',
+	'name'        => __( 'Front Page 5', CHILD_TEXT_DOMAIN ),
+	'description' => __( 'This is the front page 5 section.', CHILD_TEXT_DOMAIN ),
+) );
