@@ -1,2 +1,101 @@
 /* ## Front Page
 --------------------------------------------- */
+.front-page {
+    .site-inner {
+        padding-top: 0;
+    }
+    .content-sidebar-wrap {
+        width: 100%;
+    }
+}
+.front-page-1,
+.front-page-2,
+.front-page-3,
+.front-page-4,
+.front-page-5 {
+    outline: none;
+    width: 100%;
+    padding: 6rem 0;
+    background-color: $white;
+    .widget-area {
+        width: 100%;
+    }
+    .wrap {
+        @include breakpoint(sm) {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            
+        }
+    }
+}
+
+.front-page-1 {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: $gray;
+    @include breakpoint(sm) {
+        height: 70vh;
+    }
+    .wrap {
+        position: relative;
+        text-align: center;
+    }
+    .widget {
+        background-color: transparent;
+        &:last-of-type {
+            margin-bottom: 1rem; // For heading line height.
+        }
+    }
+    h1 {
+        margin: 0 0 0.618em;
+    }
+    p {
+        margin: 0 0 1.382em;
+    }
+}
+
+/* ## Flexible Widgets
+--------------------------------------------- */
+.widget-halves,
+.widget-thirds,
+.widget-fourths,
+.widget-fifths, 
+.widget-sixths {
+    .widget {
+        &:first-of-type {
+            flex: 0 1 100%;
+            text-align: center;
+        }
+    }
+}
+
+.widget {
+    .widget-halves & {
+        flex: 0 1 47%;
+        &:last-of-type {
+            margin-left: auto;
+        }
+    }
+    .widget-thirds & {
+        flex: 0 1 30.33333%;
+        &:nth-of-type(3) {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+    .widget-fourths & {
+        flex: 0 1 22%;
+        &:nth-child(3) {
+            margin-left: auto;
+        }
+        &:nth-child(4) {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}
+
+

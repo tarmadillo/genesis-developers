@@ -1,15 +1,14 @@
 <?php
 /**
- * Genesis Sample.
+ * Genesis Developer
  *
- * This file adds the landing page template to the Genesis Sample Theme.
+ * This file adds the landing page template to the Genesis Developer Theme.
  *
  * Template Name: Landing
  *
- * @package Genesis Sample
- * @author  StudioPress
+ * @package Genesis Developer
+ * @author  Tony Armadillo
  * @license GPL-2.0+
- * @link    http://www.studiopress.com/
  */
 namespace TonyArmadillo\Developers;
 

@@ -1,13 +1,12 @@
 <?php
 /**
- * Genesis Sample 2.3.0 Developer.
+ * Genesis Developer
  *
- * This file adds the required helper functions used in the Genesis Sample Theme.
+ * This file adds the required helper functions used in the Genesis Developer Theme.
  *
- * @package Genesis Sample 2.3.0 Developer.
- * @author  StudioPress
+ * @package Genesis Developer
+ * @author  Tony Armadillo
  * @license GPL-2.0+
- * @link    http://www.studiopress.com/
  */
 namespace TonyArmadillo\Developers;
 

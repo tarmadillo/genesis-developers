@@ -5,9 +5,17 @@
 --------------------------------------------- */
 .content-sidebar-wrap,
 .wrap {
+    width: 90%;
+    max-width: map-get($breakpoints, xl);
+    margin: 0 auto;   
+}
+
+.entry-content {
     margin: 0 auto;
-    padding-left: 5%;
-    padding-right: 5%;
+    max-width: 800px;
+    .full-width-content & {
+        max-width: 100%;
+    }
 }
 
 .site-inner {
@@ -20,18 +28,11 @@
 	max-width: 800px;
 }
 
-/* ### Wrapping div for.sidebar-primary  
---------------------------------------------- */
-
 .content-sidebar-wrap {
-    max-width: map-get($breakpoints, xl);
-    padding-top: 5%;
-    padding-bottom: 5%;
     @include breakpoint(md) {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        padding: 4rem 10vw;
         &:before,
         &:after {
             display: none; // Flex fix.

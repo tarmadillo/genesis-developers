@@ -1,13 +1,12 @@
 <?php
 /**
- * Genesis Sample.
+ * Genesis Developer
  *
- * This file adds the WooCommerce styles and the Customizer additions for WooCommerce to the Genesis Sample Theme.
+ * This file adds the WooCommerce styles and the Customizer additions for WooCommerce to the Genesis Developer Theme.
  *
- * @package Genesis Sample
- * @author  StudioPress
+ * @package Genesis Developer
+ * @author  Tony Armadillo
  * @license GPL-2.0+
- * @link    http://www.studiopress.com/
  */
 namespace TonyArmadillo\Developers;
 
@@ -15,14 +14,14 @@ add_filter( 'woocommerce_enqueue_styles', __NAMESPACE__ . '\woocommerce_styles' 
 /**
  * Enqueue the theme's custom WooCommerce styles to the WooCommerce plugin.
  *
- * @since 2.3.0
+ * @since 1.0.0
  *
  * @return array Required values for the Genesis Sample Theme's WooCommerce stylesheet.
  */
 function woocommerce_styles( $enqueue_styles ) {
 
 	$enqueue_styles['genesis-sample-woocommerce-styles'] = array(
-		'src'     => get_stylesheet_directory_uri() . '/lib/woocommerce/genesis-sample-woocommerce.css',
+		'src'     => get_stylesheet_directory_uri() . '/lib/woocommerce/woocommerce.css',
 		'deps'    => '',
 		'version' => CHILD_THEME_VERSION,
 		'media'   => 'screen'
@@ -36,7 +35,7 @@ add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\woocommerce_css' );
 /**
  * Add the themes's custom CSS to the WooCommerce stylesheet.
  *
- * @since 2.3.0
+ * @since 1.0.0
  *
  * @return string CSS to be outputted after the theme's custom WooCommerce stylesheet.
  */

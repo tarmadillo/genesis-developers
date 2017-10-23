@@ -1,20 +1,20 @@
 <?php
 /**
- * Genesis Sample 2.3.0 Developer.
+ * Genesis Developer.
  *
- * This file adds functions to the Genesis Sample Theme.
+ * This file adds functions to the Genesis Developer Theme.
  *
- * @package Genesis Sample 2.3.0 Developer
- * @author  StudioPress
+ * @package Genesis Developer
+ * @author  Tony Armadillo
  * @license GPL-2.0+
- * @link    http://www.studiopress.com/
+ * @link    http://www.armadillowebdesign.com/
  */
 namespace TonyArmadillo\Developers;
 
 /**
  * Initialize the theme's constants.
  *
- * @since 2.3.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -40,7 +40,7 @@ add_action( 'after_setup_theme', __NAMESPACE__ . '\localization_setup' );
 /**
  * Set Localization (do not remove).
  *
- * @since 2.3.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -59,23 +59,23 @@ include_once( CHILD_THEME_DIR . '/lib/woocommerce/woocommerce-output.php' );
 include_once( CHILD_THEME_DIR . '/lib/woocommerce/woocommerce-notice.php' );
 
 
-add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_scripts_styles' );
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_scripts_styles', 999 );
 /**
  * Enqueue Scripts and Styles.
  *
- * @since 2.3.0
+ * @since 1.0.0
  *
  * @return void
  */
 function enqueue_scripts_styles() {
 
-	wp_enqueue_style( CHILD_TEXT_DOMAIN . '-fonts', '//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700', array(), CHILD_THEME_VERSION );
+	wp_enqueue_style( CHILD_TEXT_DOMAIN . '-fonts', '//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700|Roboto:400,300', array(), CHILD_THEME_VERSION );
 	wp_enqueue_style( 'dashicons' );
 
 	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 	wp_enqueue_script( CHILD_TEXT_DOMAIN . '-responsive-menu', get_stylesheet_directory_uri() . "/js/responsive-menus{$suffix}.js", array( 'jquery' ), CHILD_THEME_VERSION, true );
 	wp_localize_script(
-		'genesis-sample-responsive-menu',
+		CHILD_TEXT_DOMAIN . '-responsive-menu',
 		'genesis_responsive_menu',
 		genesis_sample_responsive_menu_settings()
 	);
@@ -85,7 +85,7 @@ function enqueue_scripts_styles() {
 /**
  * Define our responsive menu settings.
  *
- * @since 2.3.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -119,7 +119,14 @@ add_theme_support( 'html5', array(
 ));
 
 // Add Accessibility support.
-add_theme_support( 'genesis-accessibility', array( '404-page', 'drop-down-menu', 'headings', 'rems', 'search-form', 'skip-links' ) );
+add_theme_support( 'genesis-accessibility', array( 
+    '404-page', 
+    'drop-down-menu', 
+    'headings', 
+    'rems', 
+    'search-form', 
+    'skip-links' 
+) );
 
 // Add viewport meta tag for mobile browsers.
 add_theme_support( 'genesis-responsive-viewport' );
@@ -169,8 +176,20 @@ add_theme_support( 'genesis-footer-widgets', 3 );
 
 // Rename primary and secondary navigation menus.
 add_theme_support( 'genesis-menus', array( 
-    'primary'   => __( 'After Header Menu', CHILD_TEXT_DOMAIN ), 
-    'secondary' => __( 'Footer Menu', CHILD_TEXT_DOMAIN ) ) );
+    'primary'   => __( 'Primary Menu', CHILD_TEXT_DOMAIN ), 
+    'secondary' => __( 'Secondary Menu', CHILD_TEXT_DOMAIN ) ) );
+
+// Remove unused templates and metaboxes.
+add_filter( 'theme_page_templates', __NAMESPACE__ . '\remove_templates' );
+add_action( 'genesis_admin_before_metaboxes', __NAMESPACE__ . '\remove_metaboxes' );
+
+// Remove unused site layouts.
+genesis_unregister_layout( 'content-sidebar-sidebar' );
+genesis_unregister_layout( 'sidebar-content-sidebar' );
+genesis_unregister_layout( 'sidebar-sidebar-content' );
+
+// Unregister secondary sidebar
+unregister_sidebar( 'sidebar-alt' );
 
 // Add Image Sizes.
 add_image_size( 'featured-image', 720, 400, true );
@@ -179,15 +198,11 @@ add_image_size( 'featured-image', 720, 400, true );
 remove_action( 'genesis_after_header', 'genesis_do_nav' );
 add_action( 'genesis_header_right', 'genesis_do_nav' );
 
-// Reposition the secondary navigation menu.
-remove_action( 'genesis_after_header', 'genesis_do_subnav' );
-add_action( 'genesis_footer', 'genesis_do_subnav', 5 );
-
 add_filter( 'wp_nav_menu_args', __NAMESPACE__ . '\secondary_menu_args' );
 /**
  * Reduce the secondary navigation menu to one level depth.
  *
- * @since 2.3.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -207,7 +222,7 @@ add_filter( 'genesis_author_box_gravatar_size', __NAMESPACE__ . '\author_box_gra
 /**
  * Modify size of the Gravatar in the author box.
  *
- * @since 2.3.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -219,7 +234,7 @@ add_filter( 'genesis_comment_list_args', __NAMESPACE__ . '\comments_gravatar' );
 /**
  * Modify size of the Gravatar in the entry comments.
  *
- * @since 2.3.0
+ * @since 1.0.0
  *
  * @return void
  */
@@ -243,14 +258,7 @@ function featured_post_image() {
 	the_post_thumbnail('featured-image');
 }
 
-// Remove unused templates and metaboxes.
-add_filter( 'theme_page_templates', __NAMESPACE__ . '\remove_templates' );
-add_action( 'genesis_admin_before_metaboxes', __NAMESPACE__ . '\remove_metaboxes' );
 
-// Remove unused site layouts.
-genesis_unregister_layout( 'content-sidebar-sidebar' );
-genesis_unregister_layout( 'sidebar-content-sidebar' );
-genesis_unregister_layout( 'sidebar-sidebar-content' );
 
 // Register Front Page Widget Areas.
 genesis_register_sidebar( array(
@@ -261,7 +269,7 @@ genesis_register_sidebar( array(
 
 genesis_register_sidebar( array(
 	'id'          => 'front-page-2',
-	'name'        => __( 'Featured Products', CHILD_TEXT_DOMAIN ),
+	'name'        => __( 'Front Page 2', CHILD_TEXT_DOMAIN ),
 	'description' => __( 'This is the front page 2 section.', CHILD_TEXT_DOMAIN ),
 ) );
 genesis_register_sidebar( array(
@@ -278,4 +286,11 @@ genesis_register_sidebar( array(
 	'id'          => 'front-page-5',
 	'name'        => __( 'Front Page 5', CHILD_TEXT_DOMAIN ),
 	'description' => __( 'This is the front page 5 section.', CHILD_TEXT_DOMAIN ),
+) );
+
+//* Register webshop sidebar
+genesis_register_sidebar( array(
+    'id'          => 'woo_primary_sidebar',
+    'name'        => __( 'Webshop Sidebar', 'themename' ),
+    'description' => __( 'This is the WooCommerce webshop sidebar', CHILD_TEXT_DOMAIN ),
 ) );

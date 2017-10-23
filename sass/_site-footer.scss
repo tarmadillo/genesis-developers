@@ -23,7 +23,7 @@
 	font-size: 18px;
 	font-size: 1.8rem;
 	padding: 60px 0;
-    .wrap {
+    & > .wrap {
         @include breakpoint(sm) {
             display: flex;
             flex-wrap: wrap;

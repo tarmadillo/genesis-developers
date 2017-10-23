@@ -1,13 +1,11 @@
 <?php
 /**
- * Studio Pro.
+ * Genesis Developer
  *
- * This file adds hero section functionality to the Studio Pro theme.
+ * This file adds hero section functionality to the Genesis Developer theme.
  *
- * @package      Studio Pro
- * @link         https://seothemes.net/studio-pro
- * @author       Seo Themes
- * @copyright    Copyright © 2017 Seo Themes
+ * @package      Genesis Developer
+ * @author       Tony Armadillo
  * @license      GPL-2.0+
  */
 

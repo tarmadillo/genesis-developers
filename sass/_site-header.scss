@@ -11,11 +11,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        flex-wrap: wrap;
-        @include breakpoint(md) {
-            padding: 0 10vw;
-            flex-wrap: nowrap;
-        }
+        flex-wrap: nowrap;
     }
 }
 
@@ -87,10 +83,13 @@
 /* ## Header Widget Right
 --------------------------------------------- */
 .header-widget-area {
-    flex:1;
+    flex: 1;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
+    @include breakpoint(md) {
+        flex: 3;
+    }
 }
 
 /* ## Hero Section

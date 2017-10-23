@@ -1,10 +1,10 @@
 <?php
 /**
- * Genesis Sample 2.3.0 Developer.
+ * Genesis Developer
  *
- * This file adds the required helper functions used in the Genesis Sample Theme.
+ * This file changes the blog layout to masonry in the Genesis Developer Theme.
  *
- * @package Genesis Sample 2.3.0 Developer.
+ * @package Genesis Developer
  * @author  Tony Armadillo
  * @license GPL-2.0+
  */
@@ -14,7 +14,7 @@ add_action('genesis_meta',__NAMESPACE__ . '\masonry_layout');
 /**
  * Do masonry actions
  *
- * @since 2.0.0
+ * @since 1.0.0
  *
  * @return void
  */

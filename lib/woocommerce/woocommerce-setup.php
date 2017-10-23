@@ -1,13 +1,12 @@
 <?php
 /**
- * Genesis Sample.
+ * Genesis Developer
  *
- * This file adds the required WooCommerce setup functions to the Genesis Sample Theme.
+ * This file adds the required WooCommerce setup functions to the Genesis Developer Theme.
  *
- * @package Genesis Sample
- * @author  StudioPress
+ * @package Genesis Developer
+ * @author  Tony Armadillo
  * @license GPL-2.0+
- * @link    http://www.studiopress.com/
  */
 namespace TonyArmadillo\Developers;
 
@@ -15,7 +14,7 @@ add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\products_match_height', 99 )
 /**
  * Print an inline script to the footer to keep products the same height.
  *
- * @since 2.3.0
+ * @since 1.0.0
  */
 function products_match_height() {
 
@@ -33,7 +32,7 @@ add_filter( 'woocommerce_style_smallscreen_breakpoint', __NAMESPACE__ . '\woocom
 /**
  * Modify the WooCommerce breakpoints.
  *
- * @since 2.3.0
+ * @since 1.0.0
  *
  * @return string Pixel width of the theme's breakpoint.
  */
@@ -68,7 +67,7 @@ add_filter( 'genesiswooc_products_per_page', __NAMESPACE__ . '\default_products_
 /**
  * Set the default products per page.
  *
- * @since 2.3.0
+ * @since 1.0.0
  *
  * @return int Number of products to show per page.
  */
@@ -80,7 +79,7 @@ add_filter( 'woocommerce_pagination_args', 	__NAMESPACE__ . '\woocommerce_pagina
 /**
  * Update the next and previous arrows to the default Genesis style.
  *
- * @since 2.3.0
+ * @since 1.0.0
  *
  * @return string New next and previous text string.
  */
@@ -97,7 +96,7 @@ add_action( 'after_switch_theme', __NAMESPACE__ . '\woocommerce_image_dimensions
 /**
 * Define WooCommerce image sizes on theme activation.
 *
-* @since 2.3.0
+* @since 1.0.0
 */
 function woocommerce_image_dimensions_after_theme_setup() {
 
@@ -115,7 +114,7 @@ add_action( 'activated_plugin', __NAMESPACE__ . '\woocommerce_image_dimensions_a
 /**
  * Define the WooCommerce image sizes on WooCommerce activation.
  *
- * @since 2.3.0
+ * @since 1.0.0
  */
 function woocommerce_image_dimensions_after_woo_activation( $plugin ) {
 
@@ -131,7 +130,7 @@ function woocommerce_image_dimensions_after_woo_activation( $plugin ) {
 /**
  * Update WooCommerce image dimensions.
  *
- * @since 2.3.0
+ * @since 1.0.0
  */
 function update_woocommerce_image_dimensions() {
 
@@ -157,3 +156,25 @@ function update_woocommerce_image_dimensions() {
 	update_option( 'shop_thumbnail_image_size', $thumbnail ); // Image gallery thumbs.
 
 }
+
+/**
+ * Remove default sidebar, add shop sidebar
+ *
+ * @since 1.0.0
+ */
+
+add_action( 'genesis_before', __NAMESPACE__ . '\add_woo_sidebar', 20 );
+function add_woo_sidebar() {
+    if( is_woocommerce() ) {
+        remove_action( 'genesis_sidebar', 'genesis_do_sidebar' );
+        remove_action( 'genesis_sidebar_alt', 'genesis_do_sidebar_alt' );
+        add_action( 'genesis_sidebar', __NAMESPACE__. '\woo_sidebar' );
+    }
+     function woo_sidebar() {
+        if ( ! dynamic_sidebar( 'woo_primary_sidebar' ) && current_user_can( 'edit_theme_options' )  ) {
+            genesis_default_widget_area_content( __( 'WooCommerce Primary Sidebar', 'genesis' ) );
+        }
+    }
+}
+
+    

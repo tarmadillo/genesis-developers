@@ -1,9 +1,17 @@
 /* # Site Navigation
 ---------------------------------------------------------------------------------------------------- */
+.genesis-responsive-menu {
+    & > .wrap {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
 
 .menu {
     width: 100%;
+    font-size: 16px;
     font-size: 1.6rem;
+    font-weight: 300;
     line-height: 1;
     text-align: left;
     display: flex;

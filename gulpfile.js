@@ -41,11 +41,43 @@ function handleErrors() {
 
 /************
  * CSS Tasks
- ************
+ ************/
+/**
+ * Woocommerce compile
+ */
+gulp.task('woocommerce', function() {
+    return gulp.src('sass/woocommerce.scss')
+        
+        // Error Handling
+        .pipe(plumber({
+            errorHandler: handleErrors
+        }))
+    
+        .pipe( sourcemaps.init())    
+    
+        .pipe( sass({
+            includePaths: [].concat( bourbon, neat),
+            errLogToConsole: true,
+            outputStyle: 'expanded' //options: nested, expanded, compact, compressed
+        }))
+    
+        .pipe( postcss([
+            autoprefixer({
+                browsers: ['last 2 versions']
+            }),
+            mqpacker({
+                sort: true
+            }),
+        ]))
+        
+        .pipe(sourcemaps.write())
+          
+        .pipe(gulp.dest('./lib/woocommerce/'))
+});
 /**
  * PostCSS Task Handler
  */
-gulp.task('postcss', function(){
+gulp.task('postcss', ['woocommerce'], function(){
    
     return gulp.src('sass/style.scss')
     
