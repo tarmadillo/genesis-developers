@@ -52,7 +52,11 @@ function front_page_genesis_meta() {
     
 }
 
-// Define front-page body class.
+/**
+ * Define front-page body class.
+ *
+ * @since 1.0.0
+ */
 function body_class( $classes ) {
 
 	$classes[] = 'front-page';
@@ -61,7 +65,11 @@ function body_class( $classes ) {
 
 }
 
-// Setup widget counts.
+/**
+ * Setup widget counts.
+ *
+ * @since 1.0.0
+ */
 function count_widgets( $id ) {
 
 	global $sidebars_widgets;
@@ -72,6 +80,11 @@ function count_widgets( $id ) {
 
 }
 
+/**
+ * Setup widget class based on count
+ *
+ * @since 1.0.0
+ */
 function widget_area_class( $id ) {
 
 	$count = count_widgets( $id );
